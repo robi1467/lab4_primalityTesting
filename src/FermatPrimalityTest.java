@@ -10,9 +10,9 @@ public class FermatPrimalityTest {
         BigInteger bi1 = new BigInteger("1");
         BigInteger bi2 = new BigInteger("2");
         for (int i = 1; i <= s; i++) {
-            BigInteger a =  p.subtract(bi2);
+            BigInteger a =  new BigInteger(1024, rand).subtract(bi2);
             a = a.add(bi2);
-            if (a.modPow(p.subtract(bi1), p) != bi1) {
+            if (!a.isProbablePrime(1)) {
                 System.out.println("p is composite");
             }
         }
@@ -20,14 +20,17 @@ public class FermatPrimalityTest {
     }
 
     public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("Please input the value to test.");
-        int n = myObj.nextInt();
-        System.out.println("Please input the number of times to test.");
-        int k = myObj.nextInt();
-        fermatPrimality(n, k);
+        // Scanner myObj = new Scanner(System.in);
+        // System.out.println("Please input the value to test.");
+        // int n = myObj.nextInt();
+        // System.out.println("Please input the number of times to test.");
+        // int k = myObj.nextInt();
+        // fermatPrimality(n, k);
 //        System.out.println("n: " + n);
 //        System.out.println("k: " + k);
+        Random rand = new Random();
+        BigInteger temp = new BigInteger(1024, rand);
+        fermatPrimality(temp, 2);
     }
 }
 
