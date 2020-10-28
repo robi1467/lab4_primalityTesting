@@ -9,7 +9,7 @@ public class FermatPrimalityTest {
         Random rand = new Random();
         for (int i = 1; i <= s; i++) {
             int a = rand.nextInt(p - 2) + 2;
-            if (Math.pow(a, (p - 1)) != 1) {
+            if (Math.pow(a, (p - 1)) % p != 1) {
                 System.out.println("p is composite");
             }
         }
