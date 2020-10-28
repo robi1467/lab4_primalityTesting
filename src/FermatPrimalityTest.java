@@ -1,15 +1,18 @@
 import java.util.Random;
 import java.lang.Math;
-
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class FermatPrimalityTest {
 
-    static void fermatPrimality(int p, int s) {
+    static void fermatPrimality(BigInteger p, int s) {
         Random rand = new Random();
+        BigInteger bi1 = new BigInteger("1");
+        BigInteger bi2 = new BigInteger("2");
         for (int i = 1; i <= s; i++) {
-            int a = rand.nextInt(p - 2) + 2;
-            if (Math.pow(a, (p - 1)) % p != 1) {
+            BigInteger a =  p.subtract(bi2);
+            a = a.add(bi2);
+            if (a.modPow(p.subtract(bi1), p) != bi1) {
                 System.out.println("p is composite");
             }
         }
