@@ -9,7 +9,7 @@ public class FermatPrimalityTest {
         Random rand = new Random();
         BigInteger bi1 = new BigInteger("1");
         BigInteger bi2 = new BigInteger("2");
-        for (int i = 1; i <= s; i++) {
+        for (int i = 1; i < s; i++) {
             BigInteger a =  new BigInteger(1024, rand).subtract(bi2);
             a = a.add(bi2);
             if (!a.isProbablePrime(1)) {
