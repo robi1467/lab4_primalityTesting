@@ -5,20 +5,27 @@ import java.util.Scanner;
 
 public class FermatPrimalityTest {
 
-    static String fermatPrimality(BigInteger p, int s) {
-        String res = "p is likely prime";
+    static void fermatPrimality(BigInteger p, int s) {
+        // String res = "p is likely prime";
         Random rand = new Random();
         BigInteger bi1 = new BigInteger("1");
         BigInteger bi2 = new BigInteger("2");
+        BigInteger maxlim = p.subtract(bi2);
         for (int i = 1; i < s; i++) {
-            BigInteger a =  new BigInteger(1024, rand).subtract(bi1);
-            a = a.add(bi2);
-            if (!a.isProbablePrime(1)) {
-                res = "p is composite";
-                return res;
+            int bit = maxlim.bitLength();
+            BigInteger a =  new BigInteger(bit, rand);
+            if (a.compareTo(bi2) < 0)
+                a = a.add(bi2);
+            if (a.compareTo(maxlim.subtract(bi2)) >= 0)
+                a = a.mod(maxlim.subtract(bi2)).add(bi2);
+                
+            BigInteger eq = a.modPow((p.subtract(bi1)), p);
+            if (!eq.isProbablePrime(1)) {
+                // res = "p is composite";
+                System.out.println("p is composite");
             }
         }
-        return res;
+        System.out.println("p is likely prime");
     }
 
     public static void main(String[] args) {
@@ -31,8 +38,9 @@ public class FermatPrimalityTest {
 //        System.out.println("n: " + n);
 //        System.out.println("k: " + k);
         Random rand = new Random();
-        BigInteger temp = new BigInteger(1024, rand);
-        fermatPrimality(temp, 5);
+        // BigInteger temp = new BigInteger(1024, rand);
+        BigInteger temp = new BigInteger("7");
+        System.out.println(fermatPrimality(temp, 5));
     }
 }
 
