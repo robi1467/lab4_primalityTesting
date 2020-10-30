@@ -5,20 +5,35 @@ import java.util.Scanner;
 
 public class FermatPrimalityTest {
 
-    static String fermatPrimality(BigInteger p, int s) {
+    Random rand = new Random();
+
+    String fermatPrimality(BigInteger p, int s) {
         String res = "p is likely prime";
-        Random rand = new Random();
-        BigInteger bi1 = new BigInteger("1");
-        BigInteger bi2 = new BigInteger("2");
-        for (int i = 1; i < s; i++) {
-            BigInteger a =  new BigInteger(1024, rand).subtract(bi2);
-            a = a.add(bi2);
-            if (!a.isProbablePrime(1)) {
+        if (p.equals(BigInteger.ONE))
+            return "prime";
+
+        for (int i = 0; i < s; i++) {
+            BigInteger a =  getRandomFermatBase(p);
+            a = a.modPow(p.subtract(BigInteger.ONE), p);
+            if (!a.equals(BigInteger.ONE)) {
                 res = "p is composite";
                 return res;
             }
         }
         return res;
+    }
+
+    private BigInteger getRandomFermatBase(BigInteger n)
+    {
+        while (true)
+        {
+            final BigInteger a = new BigInteger (n.bitLength(), rand);
+            // must have 1 <= a < n
+            if (BigInteger.ONE.compareTo(a) <= 0 && a.compareTo(n) < 0)
+            {
+                return a;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -31,9 +46,17 @@ public class FermatPrimalityTest {
 //        System.out.println("n: " + n);
 //        System.out.println("k: " + k);
         Random rand = new Random();
-        BigInteger temp = new BigInteger(1024, rand);
-        fermatPrimality(temp, 5);
+        BigInteger temp = new BigInteger("12"); //<--- Change this to random big integer
         System.out.println(temp);
+        FermatPrimalityTest test = new FermatPrimalityTest();
+        System.out.println(test.fermatPrimality(temp, 5));
+        for (int i = 1; i <= 50; i++){
+            FermatPrimalityTest tst = new FermatPrimalityTest();
+            BigInteger tmp = new BigInteger(String.valueOf(i));
+            String result = tst.fermatPrimality(tmp,5);
+            System.out.println(tmp);
+            System.out.println(result);
+        }
     }
 }
 
