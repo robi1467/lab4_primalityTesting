@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class FermatPrimalityTest {
 
     static String fermatPrimality(BigInteger p, int s) {
+        String res = "p is likely prime";
         Random rand = new Random();
         BigInteger bi1 = new BigInteger("1");
         BigInteger bi2 = new BigInteger("2");
@@ -13,12 +14,11 @@ public class FermatPrimalityTest {
             BigInteger a =  new BigInteger(1024, rand).subtract(bi2);
             a = a.add(bi2);
             if (!a.isProbablePrime(1)) {
-                System.out.println("p is composite");
-                return p + " is composite";
+                res = "p is composite";
+                return res;
             }
         }
-        System.out.println("p is likely prime");
-        return p + " is likely prime";
+        return res;
     }
 
     public static void main(String[] args) {
@@ -32,8 +32,8 @@ public class FermatPrimalityTest {
 //        System.out.println("k: " + k);
         Random rand = new Random();
         BigInteger temp = new BigInteger(1024, rand);
+        fermatPrimality(temp, 5);
         System.out.println(temp);
-        fermatPrimality(temp, 2);
     }
 }
 
