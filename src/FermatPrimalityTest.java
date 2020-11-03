@@ -43,13 +43,25 @@ public class FermatPrimalityTest {
         operation.add(s);
         return res;
     }
+
+    /**
+     * mulitplyStrings - multiplicative value of two bigIntegers
+     * @param a - String
+     * @param b - String
+     * @return - bigInteger
+     */
     private static BigInteger multiplyStrings(String a, String b){
         BigInteger int1 = new BigInteger(a);
         BigInteger int2 = new BigInteger(b);
         return int1.multiply(int2);
     }
 
-
+/**
+ *  avgCalc - calculates the average value for all integers in a array and returns
+ * the mean value for that array as a double.
+ * @param a - ArrayList<Integer>
+ * @return - double: mean of integers in arraylist a
+ */
     private static double avgCalc(ArrayList<Integer> a) {
         double sum = 0;
         for (Integer arr : a) {
@@ -101,7 +113,7 @@ public class FermatPrimalityTest {
         System.out.println(fermatPrimality(temp1024, 20)); 
 
         System.out.println("Average candidate operations: " + avgCalc(operation));
-        System.out.println ("array size: " + operation.size());
+        System.out.println ("array size: " + operation.size()); // left this to make it easier to calculate te avg yourself
     }
 }
 
