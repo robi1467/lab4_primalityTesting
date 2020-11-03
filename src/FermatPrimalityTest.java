@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class FermatPrimalityTest {
 
-   public static ArrayList<Integer> operation = new ArrayList<>(100);
+   public static ArrayList<Integer> operation;
 
     /**
      * fermatPrimality - calculates a prime candidate to see it he value is 
@@ -50,8 +50,8 @@ public class FermatPrimalityTest {
     }
 
 
-    private static int avgCalc(ArrayList<Integer> a) {
-        int sum = 0;
+    private static double avgCalc(ArrayList<Integer> a) {
+        double sum = 0;
         for (Integer arr : a) {
             sum += arr;
         }
@@ -61,6 +61,7 @@ public class FermatPrimalityTest {
 
     public static void main(String[] args) {
 
+    operation = new ArrayList<>();
 /**
  * Use this section here. You can randomly generate a large 1024 bit bigInteger to check 
  * Other wise you can use a predetermined prime or composite number to better test the 
@@ -80,24 +81,24 @@ public class FermatPrimalityTest {
         String large512prime2 = "13072513054522902461007824784498106608343070339329857542234225729374526655420013098095904760733391601616661493336375413779434201970159299991292808478644657";
        
         // This is a random big integer tester
-        // BigInteger tempR = new BigInteger(1024, rand); // can alter the bit length here
-        //System.out.println(fermatPrimality(tempR, 4));
+        BigInteger tempR = new BigInteger(1024, rand); // can alter the bit length here
+        System.out.println(fermatPrimality(tempR, 20));
        
         BigInteger carmicheal = new BigInteger("63973");
         System.out.println(fermatPrimality(carmicheal, 20));
        
-        // System.out.println("512 of two prime numbers: " +fermatPrimality(multiplyStrings(large256prime1, large256prime2),20));
-        // System.out.println("1024 of two prime numbers: " +fermatPrimality(multiplyStrings(large512prime1, large512prime2),20));
+        System.out.println("512 of two prime numbers: " +fermatPrimality(multiplyStrings(large256prime1, large256prime2),20));
+        System.out.println("1024 of two prime numbers: " +fermatPrimality(multiplyStrings(large512prime1, large512prime2),20));
         
-        // BigInteger tempC512 = new BigInteger(largeComposite512);
-        // System.out.println(fermatPrimality(tempC512, 10)); 
-        // BigInteger tempC1024 = new BigInteger(largeComposite1024);
-        // System.out.println(fermatPrimality(tempC1024, 10)); 
+        BigInteger tempC512 = new BigInteger(largeComposite512);
+        System.out.println(fermatPrimality(tempC512, 20)); 
+        BigInteger tempC1024 = new BigInteger(largeComposite1024);
+        System.out.println(fermatPrimality(tempC1024, 20)); 
 
-        // BigInteger temp512 = new BigInteger(largePrime512);
-        // System.out.println(fermatPrimality(temp512, 10)); 
-        // BigInteger temp1024 = new BigInteger(largePrime1024);
-        // System.out.println(fermatPrimality(temp1024, 10)); 
+        BigInteger temp512 = new BigInteger(largePrime512);
+        System.out.println(fermatPrimality(temp512, 20)); 
+        BigInteger temp1024 = new BigInteger(largePrime1024);
+        System.out.println(fermatPrimality(temp1024, 20)); 
 
         System.out.println("Average candidate operations: " + avgCalc(operation));
         System.out.println ("array size: " + operation.size());
