@@ -34,7 +34,7 @@ public class FermatPrimalityTest {
         // System.out.println(a); // can use this to see the a values
         BigInteger eq = a.modPow(n, p);
             if (!eq.equals(BigInteger.ONE)) {
-                res = "p is composite with " +(i +1) + " attempts";
+                res = "p is composite with " +(i) + " attempts";
                 return res;
             }
         }
