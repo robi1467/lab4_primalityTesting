@@ -8,12 +8,13 @@ public class FermatPrimalityTest {
     static String fermatPrimality(BigInteger p, int s) {
         String res = "p is likely prime";
         Random rand = new Random();
-        BigInteger bi1 = new BigInteger("1");
-        BigInteger bi2 = new BigInteger("2");
         for (int i = 1; i < s; i++) {
-            BigInteger a =  new BigInteger(1024, rand).subtract(bi1);
-            a = a.add(bi2);
-            if (!a.isProbablePrime(1)) {
+        BigInteger a = new BigInteger("200");// incase the random number is larger than p
+        BigInteger one = new BigInteger("1");
+        BigInteger n = p.subtract(one);
+        System.out.println(n +" "+ p);
+        System.out.println(a.modPow(n, p));
+            if (!a.modPow(n, p).equals(one)) {
                 res = "p is composite";
                 return res;
             }
@@ -31,8 +32,9 @@ public class FermatPrimalityTest {
 //        System.out.println("n: " + n);
 //        System.out.println("k: " + k);
         Random rand = new Random();
-        BigInteger temp = new BigInteger(1024, rand);
-        fermatPrimality(temp, 5);
+        String largePrime = "6700417";
+        BigInteger temp = new BigInteger(largePrime);
+        System.out.println(fermatPrimality(temp, 5));
     }
 }
 
