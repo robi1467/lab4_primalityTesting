@@ -8,13 +8,20 @@ public class FermatPrimalityTest {
     static String fermatPrimality(BigInteger p, int s) {
         String res = "p is likely prime";
         Random rand = new Random();
+        BigInteger bi2 = new BigInteger("2");
+        BigInteger maxlim = p.subtract(bi2);
+
         for (int i = 1; i < s; i++) {
-        BigInteger a = new BigInteger("200");// incase the random number is larger than p
-        BigInteger one = new BigInteger("1");
-        BigInteger n = p.subtract(one);
-        System.out.println(n +" "+ p);
-        System.out.println(a.modPow(n, p));
-            if (!a.modPow(n, p).equals(one)) {
+        int bit = maxlim.bitLength();
+        BigInteger a =  new BigInteger(bit, rand);
+        if (a.compareTo(bi2) < 0)
+            a = a.add(bi2);
+        if (a.compareTo(maxlim.subtract(bi2)) >= 0)
+            a = a.mod(maxlim.subtract(bi2)).add(bi2);
+        BigInteger n = p.subtract(BigInteger.ONE);
+        System.out.println(a);
+        BigInteger eq = a.modPow(n, p);
+            if (!eq.equals(BigInteger.ONE)) {
                 res = "p is composite";
                 return res;
             }
