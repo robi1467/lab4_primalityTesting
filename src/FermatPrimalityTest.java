@@ -40,6 +40,7 @@ public class FermatPrimalityTest {
 //        System.out.println("k: " + k);
         Random rand = new Random();
         String largePrime = "6700417";
+          // BigInteger temp = new BigInteger(1024, rand);
         BigInteger temp = new BigInteger(largePrime);
         System.out.println(fermatPrimality(temp, 5));
     }
