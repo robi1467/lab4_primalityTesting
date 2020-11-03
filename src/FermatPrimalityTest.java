@@ -64,12 +64,15 @@ public class FermatPrimalityTest {
         String large512prime2 = "13072513054522902461007824784498106608343070339329857542234225729374526655420013098095904760733391601616661493336375413779434201970159299991292808478644657";
        
         // This is a random big integer tester
-        BigInteger tempR = new BigInteger(1024, rand); // can alter the bit length here
+        // BigInteger tempR = new BigInteger(1024, rand); // can alter the bit length here
         //System.out.println(fermatPrimality(tempR, 4));
+       
         BigInteger carmicheal = new BigInteger("63973");
+       
         //System.out.println(fermatPrimality(carmicheal, 20));
         System.out.println("512 of two prime numbers: " +fermatPrimality(multiplyStrings(large256prime1, large256prime2),20));
         System.out.println("1024 of two prime numbers: " +fermatPrimality(multiplyStrings(large512prime1, large512prime2),20));
+        
         // BigInteger tempC512 = new BigInteger(largeComposite512);
         // System.out.println(fermatPrimality(tempC512, 10)); 
         // BigInteger tempC1024 = new BigInteger(largeComposite1024);
