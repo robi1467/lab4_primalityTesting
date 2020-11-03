@@ -38,7 +38,11 @@ public class FermatPrimalityTest {
         }
         return res;
     }
-
+    private static BigInteger multiplyStrings(String a, String b){
+        BigInteger int1 = new BigInteger(a);
+        BigInteger int2 = new BigInteger(b);
+        return int1.multiply(int2);
+    }
     public static void main(String[] args) {
 
 /**
@@ -52,11 +56,20 @@ public class FermatPrimalityTest {
        
         String largeComposite512 = "4084427954536038385138725284668391430644469895936031251329406545393932344701473671913141118463224813377426908768089119024430570792100976689011422795356922";
         String largeComposite1024 = "175235910785053687508093669252142269082720923480713011429292757825307304464426816762427065109918367304282707375547941412176734738674236836691086836795978303608939792042380364175073923918927893734481284321383606714350205372635659595270854508069083928574489259566383158109737564144823601670408308285087237563154";
+
+        String large256prime1 = "80533885455867006333299079001420574414722937163681702014302302961917981004859";
+        String large256prime2 = "66153479897495903317517373067357710044089467777452529632685583857330363416311";
+
+        String large512prime1 = "12296324043782649445502717876806444267127432453026870292891514436900595691868406808555492049547102130873990693288848138614660142350611639071234494966050301";
+        String large512prime2 = "13072513054522902461007824784498106608343070339329857542234225729374526655420013098095904760733391601616661493336375413779434201970159299991292808478644657";
        
         // This is a random big integer tester
         BigInteger tempR = new BigInteger(1024, rand); // can alter the bit length here
-        System.out.println(fermatPrimality(tempR, 4));
-
+        //System.out.println(fermatPrimality(tempR, 4));
+        BigInteger carmicheal = new BigInteger("63973");
+        //System.out.println(fermatPrimality(carmicheal, 20));
+        System.out.println("512 of two prime numbers: " +fermatPrimality(multiplyStrings(large256prime1, large256prime2),20));
+        System.out.println("1024 of two prime numbers: " +fermatPrimality(multiplyStrings(large512prime1, large512prime2),20));
         // BigInteger tempC512 = new BigInteger(largeComposite512);
         // System.out.println(fermatPrimality(tempC512, 10)); 
         // BigInteger tempC1024 = new BigInteger(largeComposite1024);
@@ -77,4 +90,7 @@ public class FermatPrimalityTest {
  * composite, it does not need to take additional iterations to declare that it is true.
  * This is becasue of the fact that if it isnt equal to one through the modular equation
  * then its more than likely composite rather than prime.
+ * With a Carmichael number(63973) it took more attempts to prove that the number was
+ * composite with the most attempts out of twenty being 7mwith about 15 test being ran.
+ * 
  */
